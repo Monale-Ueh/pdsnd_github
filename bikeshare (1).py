@@ -2,50 +2,52 @@ import time
 import pandas as pd
 import numpy as np
 
-CITY_DATA = { 'chicago': 'chicago.csv',
-              'new york city': 'new_york_city.csv',
-              'washington': 'washington.csv' }
+CITY_DATA = {'chicago': 'chicago.csv',
+             'new york city': 'new_york_city.csv',
+             'washington': 'washington.csv'}
+
+CITY_LIST = ['washington', 'new york city', 'chicago']
+MONTH_LIST = ['all', 'january', 'february', 'march', 'april', 'may', 'june']
+DOW_LIST = ['all', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+
 
 def get_filters():
     """
-    Asks user to specify a city, month, and day to analyze.
+    Asks the user to specify a city, month, and day to analyze.
 
     Returns:
         (str) city - name of the city to analyze
         (str) month - name of the month to filter by, or "all" to apply no month filter
-        (str) day - name of the day of week to filter by, or "all" to apply no day filter
+        (str) day - name of the day of the week to filter by, or "all" to apply no day filter
     """
     print('Hello! Let\'s explore some US bikeshare data!')
 
-    # input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
+    # Input for city (chicago, new york city, washington). Use a while loop to handle invalid inputs
     city = ''
-    city_list = ['washington', 'new york city', 'chicago']
-    while city.lower().strip() not in city_list:
+    while city.lower().strip() not in CITY_LIST:
         print()
-        city = input("Enter city name to be analysed. Valid names are 'chicago', 'new york city', 'washington'. - ")
+        city = input("Enter city name to be analyzed. Valid names are 'chicago', 'new york city', 'washington'. - ")
         city = city.lower()
 
-
-    # input for month (all, january, february, ... , june)
+    # Input for month (all, january, february, ..., june)
     month = ''
-    month_list = ['all', 'january', 'february', 'march', 'april', 'may', 'june']
-    while month.lower().strip() not in month_list:
+    while month.lower().strip() not in MONTH_LIST:
         print()
-        month = input("Enter month to be analysed. Valid names are 'all', 'january', 'february', 'march', 'april', 'may', 'june'. - ")
+        month = input("Enter month to be analyzed. Valid names are 'all', 'january', 'february', 'march', 'april', 'may', 'june'. - ")
         month = month.lower()
 
-
-    # input for day of week (all, monday, tuesday, ... sunday)
+    # Input for day of the week (all, monday, tuesday, ..., sunday)
     day = ''
-    dow_list = ['all', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
-    while day.lower().strip() not in dow_list:
+    while day.lower().strip() not in DOW_LIST:
         print()
-        day = input("Enter day of week to be analysed. Valid names are 'all', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'. - ")
+        day = input("Enter day of the week to be analyzed. Valid names are 'all', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'. - ")
         day = day.lower()
-
 
     print('-'*40)
     return city, month, day
+
+
+
 
 
 def load_data(city, month, day):

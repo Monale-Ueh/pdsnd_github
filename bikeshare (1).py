@@ -11,6 +11,26 @@ MONTH_LIST = ['all', 'january', 'february', 'march', 'april', 'may', 'june']
 DOW_LIST = ['all', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
 
 
+def get_user_input(prompt, valid_options):
+    """
+    Takes user input for a specific prompt and validates it against a list of valid options.
+
+    Args:
+        prompt (str): The prompt message for user input.
+        valid_options (list): List of valid options for input.
+
+    Returns:
+        str: User input after successful validation.
+    """
+    user_input = ''
+    while user_input.lower().strip() not in valid_options:
+        print()
+        user_input = input(prompt)
+        user_input = user_input.lower()
+
+    return user_input
+
+
 def get_filters():
     """
     Asks the user to specify a city, month, and day to analyze.
@@ -22,31 +42,17 @@ def get_filters():
     """
     print('Hello! Let\'s explore some US bikeshare data!')
 
-    # Input for city (chicago, new york city, washington). Use a while loop to handle invalid inputs
-    city = ''
-    while city.lower().strip() not in CITY_LIST:
-        print()
-        city = input("Enter city name to be analyzed. Valid names are 'chicago', 'new york city', 'washington'. - ")
-        city = city.lower()
+    # Input for city (chicago, new york city, washington)
+    city = get_user_input("Enter city name to be analyzed. Valid names are 'chicago', 'new york city', 'washington'. - ", CITY_LIST)
 
     # Input for month (all, january, february, ..., june)
-    month = ''
-    while month.lower().strip() not in MONTH_LIST:
-        print()
-        month = input("Enter month to be analyzed. Valid names are 'all', 'january', 'february', 'march', 'april', 'may', 'june'. - ")
-        month = month.lower()
+    month = get_user_input("Enter month to be analyzed. Valid names are 'all', 'january', 'february', 'march', 'april', 'may', 'june'. - ", MONTH_LIST)
 
     # Input for day of the week (all, monday, tuesday, ..., sunday)
-    day = ''
-    while day.lower().strip() not in DOW_LIST:
-        print()
-        day = input("Enter day of the week to be analyzed. Valid names are 'all', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'. - ")
-        day = day.lower()
+    day = get_user_input("Enter day of the week to be analyzed. Valid names are 'all', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'. - ", DOW_LIST)
 
     print('-'*40)
     return city, month, day
-
-
 
 
 
